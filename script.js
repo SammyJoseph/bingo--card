@@ -43,7 +43,7 @@ while (randomB.length < 5) {
 		randomB.push(randomNumber);
 	}
 }
-console.log(randomB);
+// console.log(randomB);
 for (var i = 1; i <= randomB.length; i++) {
 	document.getElementById('b'+i).innerHTML = randomB[i-1];
 }		
@@ -58,7 +58,7 @@ while (randomI.length < 5) {
 		randomI.push(randomNumber);
 	}
 }
-console.log(randomI);
+// console.log(randomI);
 for (var i = 1; i <= randomI.length; i++) {
 	document.getElementById('i'+i).innerHTML = randomI[i-1];
 }
@@ -73,7 +73,7 @@ while (randomN.length < 5) {
 		randomN.push(randomNumber);
 	}
 }
-console.log(randomN);
+// console.log(randomN);
 for (var i = 1; i <= randomN.length; i++) {
 	if (i != 3) { // cuadro central bonus
 		document.getElementById('n'+i).innerHTML = randomN[i-1];
@@ -90,7 +90,7 @@ while (randomG.length < 5) {
 		randomG.push(randomNumber);
 	}
 }
-console.log(randomG);
+// console.log(randomG);
 for (var i = 1; i <= randomG.length; i++) {
 	document.getElementById('g'+i).innerHTML = randomG[i-1];
 }
@@ -105,16 +105,10 @@ while (randomO.length < 5) {
 		randomO.push(randomNumber);
 	}
 }
-console.log(randomO);
+// console.log(randomO);
 for (var i = 1; i <= randomO.length; i++) {
 	document.getElementById('o'+i).innerHTML = randomO[i-1];
 }
-
-/* Alertar al refrescar */
-/*window.onbeforeunload = function(event)
-{
-    return confirm("Confirm refresh");
-};*/
 
 
 /* Sweet alert */
