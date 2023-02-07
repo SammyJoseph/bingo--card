@@ -18,9 +18,17 @@ function cleanCard(){
 	// console.log(boxes);
 
 	boxes.forEach(box => {
-		box.classList.remove("bg-red-200");
+		box.classList.remove("bg-red-200", "gotit");
 	});
 
+	document.getElementById('n3').classList.add("gotit");
+
+	try {
+		document.querySelector('#bingoConfetti').classList.add('hidden');
+	} catch(e) {
+		console.log(e);
+	}
+	
 	closeMenu();
 }
 
@@ -29,10 +37,18 @@ function gotIt(casilla){
 	colorStatus = document.getElementById(casilla).classList.contains("bg-red-200");
 	
 	if (colorStatus) {
+		if (casilla != 'n3') {
+			document.getElementById(casilla).classList.remove("gotit");
+		}
 		document.getElementById(casilla).classList.remove("bg-red-200");
 	}else{
+		if (casilla != 'n3') {
+			document.getElementById(casilla).classList.add("gotit");
+		}
 		document.getElementById(casilla).classList.add("bg-red-200");
 	}
+
+	checkBingoStatus();
 }
 
 /* Generación de cartilla aleatoria */
@@ -159,4 +175,23 @@ function confirmNew(){
 			closeMenu();
 		}
 	});
+}
+
+/* BINGO! */
+function checkBingoStatus(){
+	if (document.querySelectorAll('.gotit').length >= 25) {
+		try {
+			document.querySelector('#bingoConfetti').classList.remove('hidden');
+		} catch(e) {
+			console.log(e);
+			bingo();
+		}
+	}
+	else{
+		try {
+			document.querySelector('#bingoConfetti').classList.add('hidden');
+		} catch(e) {
+			console.log(e);
+		}
+	}
 }

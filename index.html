@@ -8,7 +8,7 @@
       type="image/png" 
       href="images/favicon.png">
 
-	<link rel="stylesheet" href="estilos.css?v=1.2">
+	<link rel="stylesheet" href="css/estilos.css?v=1.2">
 	<script src="https://cdn.tailwindcss.com"></script>
 
 	<!-- Fonts -->
@@ -61,7 +61,7 @@
 			<div class="w-1/5 flex flex-col">
 				<div id="n1" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
 				<div id="n2" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
-				<div id="n3" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)"><img class="w-10" src="images/bonus.png"></div>
+				<div id="n3" class="casilla h-20 border border-red-300 flex items-center justify-center gotit" onclick="gotIt(this.id)"><img class="w-10" src="images/bonus.png"></div>
 				<div id="n4" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
 				<div id="n5" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
 			</div>
@@ -101,7 +101,8 @@
 		<img class="w-20" src="images/bonus.png">
 	</div>
 
-	<script src="script.js?v=1.2"></script>
+	<script src="js/confetti.js?v=1.2"></script>
+	<script src="js/script.js?v=1.2"></script>
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
