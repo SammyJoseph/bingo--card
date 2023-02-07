@@ -1,0 +1,20 @@
+.close-menu {
+  display: none;
+}
+
+#burger-menu-icon.hidden .burger-menu {
+  display: none;
+}
+
+#burger-menu-icon.hidden .close-menu {
+  display: block;
+}
+
+/* Fonts */
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}

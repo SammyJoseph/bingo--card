@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="estilos.css">
+	<script src="https://cdn.tailwindcss.com"></script>
+
+	<!-- Fonts -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body class="bg-red-500">
+	<!-- Cartilla -->
+	<div class="bingo-card pt-8 pb-10 px-6 relative">
+		<!-- Menú -->
+		<button id="burger-menu" class="absolute right-3 top-3 flex items-center rounded text-white" onclick="openMenu()">
+			<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+				<title>Menucito</title>
+				<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+			</svg>
+		</button>
+
+		<!-- BINGO título -->
+		<div class="flex flex-wrap text-white text-3xl mb-5">
+			<div class="w-1/5 flex items-center justify-center">B</div>
+			<div class="w-1/5 flex items-center justify-center">I</div>
+			<div class="w-1/5 flex items-center justify-center">N</div>
+			<div class="w-1/5 flex items-center justify-center">G</div>
+			<div class="w-1/5 flex items-center justify-center">O</div>
+		</div>
+
+		<!-- Números -->
+		<div class="flex bg-white">
+			<!-- Columna B -->
+			<div class="w-1/5 flex flex-col">
+				<div id="b1" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="b2" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="b3" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="b4" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="b5" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+			</div>
+			<!-- Columna I -->
+			<div class="w-1/5 flex flex-col">
+				<div id="i1" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="i2" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="i3" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="i4" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="i5" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+			</div>
+			<!-- Columna N -->
+			<div class="w-1/5 flex flex-col">
+				<div id="n1" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="n2" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="n3" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)"><img class="w-10" src="images/bonus.png"></div>
+				<div id="n4" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="n5" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+			</div>
+			<!-- Columna G -->
+			<div class="w-1/5 flex flex-col">
+				<div id="g1" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="g2" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="g3" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="g4" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="g5" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+			</div>
+			<!-- Columna O -->
+			<div class="w-1/5 flex flex-col">
+				<div id="o1" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="o2" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="o3" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="o4" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+				<div id="o5" class="casilla h-20 border border-red-300 flex items-center justify-center" onclick="gotIt(this.id)">X</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Opciones de menú -->
+	<div id="menu-options" class="absolute left-0 top-0 bg-black bg-opacity-90 w-full h-full flex flex-col justify-center items-center hidden">			
+		<ul class="text-white text-center">
+			<li class="mb-10 p-2 flex" onclick="confirmClean()"><span class="material-symbols-outlined mr-2">autorenew</span>Limpiar cartilla actual</li>
+			<li class="mb-10 p-2 flex" onclick="confirmNew()"><span class="material-symbols-outlined mr-2">add_circle</span>Nueva cartilla aleatoria</li>
+			<li class="mb-10 p-2 flex" onclick="closeMenu()"><span class="material-symbols-outlined mr-2">undo</span>Volver</li>
+		</ul>
+		<img class="w-20" src="images/bonus.png">
+	</div>
+
+	<script src="script.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
