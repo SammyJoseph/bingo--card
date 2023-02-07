@@ -9,6 +9,7 @@ function closeMenu(){
 function newCard(){
 	// window.location.reload();
 	createCard();
+	cleanCard();
 	closeMenu();
 }
 
