@@ -7,7 +7,9 @@ function closeMenu(){
 }
 
 function newCard(){
-	window.location.reload();
+	// window.location.reload();
+	createCard();
+	closeMenu();
 }
 
 function cleanCard(){
@@ -33,82 +35,92 @@ function gotIt(casilla){
 }
 
 /* Generación de cartilla aleatoria */
-// Columna B
-let randomB = [];
+function createCard(){
+	// Columna B
+	let randomB = [];
 
-while (randomB.length < 5) {
-	let randomNumber = Math.floor(Math.random() * 15) + 1;
+	while (randomB.length < 5) {
+		let randomNumber = Math.floor(Math.random() * 15) + 1;
 
-	if (!randomB.includes(randomNumber)) {
-		randomB.push(randomNumber);
+		if (!randomB.includes(randomNumber)) {
+			randomB.push(randomNumber);
+		}
+	}
+	// console.log(randomB);
+	for (var i = 1; i <= randomB.length; i++) {
+		document.getElementById('b'+i).innerHTML = randomB[i-1];
+	}		
+
+	// Columna I
+	let randomI = [];
+
+	while (randomI.length < 5) {
+		let randomNumber = Math.floor(Math.random() * 15) + 16;
+
+		if (!randomI.includes(randomNumber)) {
+			randomI.push(randomNumber);
+		}
+	}
+	// console.log(randomI);
+	for (var i = 1; i <= randomI.length; i++) {
+		document.getElementById('i'+i).innerHTML = randomI[i-1];
+	}
+
+	// Columna N
+	let randomN = [];
+
+	while (randomN.length < 5) {
+		let randomNumber = Math.floor(Math.random() * 15) + 31;
+
+		if (!randomN.includes(randomNumber)) {
+			randomN.push(randomNumber);
+		}
+	}
+	// console.log(randomN);
+	for (var i = 1; i <= randomN.length; i++) {
+		if (i != 3) { // cuadro central bonus
+			document.getElementById('n'+i).innerHTML = randomN[i-1];
+		}
+	}
+
+	// Columna G
+	let randomG = [];
+
+	while (randomG.length < 5) {
+		let randomNumber = Math.floor(Math.random() * 15) + 46;
+
+		if (!randomG.includes(randomNumber)) {
+			randomG.push(randomNumber);
+		}
+	}
+	// console.log(randomG);
+	for (var i = 1; i <= randomG.length; i++) {
+		document.getElementById('g'+i).innerHTML = randomG[i-1];
+	}
+
+	// Columna O
+	let randomO = [];
+
+	while (randomO.length < 5) {
+		let randomNumber = Math.floor(Math.random() * 15) + 61;
+
+		if (!randomO.includes(randomNumber)) {
+			randomO.push(randomNumber);
+		}
+	}
+	// console.log(randomO);
+	for (var i = 1; i <= randomO.length; i++) {
+		document.getElementById('o'+i).innerHTML = randomO[i-1];
 	}
 }
-// console.log(randomB);
-for (var i = 1; i <= randomB.length; i++) {
-	document.getElementById('b'+i).innerHTML = randomB[i-1];
-}		
+createCard();
 
-// Columna I
-let randomI = [];
 
-while (randomI.length < 5) {
-	let randomNumber = Math.floor(Math.random() * 15) + 16;
-
-	if (!randomI.includes(randomNumber)) {
-		randomI.push(randomNumber);
-	}
-}
-// console.log(randomI);
-for (var i = 1; i <= randomI.length; i++) {
-	document.getElementById('i'+i).innerHTML = randomI[i-1];
-}
-
-// Columna N
-let randomN = [];
-
-while (randomN.length < 5) {
-	let randomNumber = Math.floor(Math.random() * 15) + 31;
-
-	if (!randomN.includes(randomNumber)) {
-		randomN.push(randomNumber);
-	}
-}
-// console.log(randomN);
-for (var i = 1; i <= randomN.length; i++) {
-	if (i != 3) { // cuadro central bonus
-		document.getElementById('n'+i).innerHTML = randomN[i-1];
-	}
-}
-
-// Columna G
-let randomG = [];
-
-while (randomG.length < 5) {
-	let randomNumber = Math.floor(Math.random() * 15) + 46;
-
-	if (!randomG.includes(randomNumber)) {
-		randomG.push(randomNumber);
-	}
-}
-// console.log(randomG);
-for (var i = 1; i <= randomG.length; i++) {
-	document.getElementById('g'+i).innerHTML = randomG[i-1];
-}
-
-// Columna O
-let randomO = [];
-
-while (randomO.length < 5) {
-	let randomNumber = Math.floor(Math.random() * 15) + 61;
-
-	if (!randomO.includes(randomNumber)) {
-		randomO.push(randomNumber);
-	}
-}
-// console.log(randomO);
-for (var i = 1; i <= randomO.length; i++) {
-	document.getElementById('o'+i).innerHTML = randomO[i-1];
-}
+/* Alerta al refrescar */
+window.onbeforeunload = function(event)
+{
+    return confirm("Confirm refresh");
+};
 
 
 /* Sweet alert */
