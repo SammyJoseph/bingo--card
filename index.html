@@ -21,12 +21,12 @@
             <!-- Cartilla 1 -->
             <div class="bingo-card h-max py-14 px-6 relative">
                 <!-- Menú -->
-                <button id="burger-menu-1" class="fixed w-screen justify-end -ml-6 top-6 flex items-center rounded text-white">
+                <div class="fixed w-screen justify-end -ml-6 top-6 flex items-center rounded text-white">
                     <svg class="w-4 h-4 mr-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" onclick="openMenu()">
                         <title>Opciones</title>
                         <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
                     </svg>
-                </button>
+                </div>
                 <!-- BINGO título -->
                 <div class="flex flex-wrap text-white text-5xl mb-5 bingo-title">
                     <div class="w-1/5 flex items-center justify-center">B</div>
@@ -57,7 +57,7 @@
                     <div class="w-1/5 flex flex-col">
                         <div id="s1-n1" class="casilla h-20 border border-red-400 flex items-center justify-center" onclick="gotIt1(this.id)">X</div>
                         <div id="s1-n2" class="casilla h-20 border border-red-400 flex items-center justify-center" onclick="gotIt1(this.id)">X</div>
-                        <div id="s1-n3" class="casilla h-20 border border-red-400 flex items-center justify-center gotit1" onclick="gotIt1(this.id)"><img class="w-10" src="images/bonus.png"></div>
+                        <div id="s1-n3" class="casilla h-20 border border-red-400 flex items-center justify-center gotit1" onclick="gotIt1(this.id)"><img class="w-10" src="images/bonus-1.png"></div>
                         <div id="s1-n4" class="casilla h-20 border border-red-400 flex items-center justify-center" onclick="gotIt1(this.id)">X</div>
                         <div id="s1-n5" class="casilla h-20 border border-red-400 flex items-center justify-center" onclick="gotIt1(this.id)">X</div>
                     </div>
@@ -120,7 +120,7 @@
                     <div class="w-1/5 flex flex-col">
                         <div id="s2-n1" class="casilla h-20 border border-blue-400 flex items-center justify-center" onclick="gotIt2(this.id)">X</div>
                         <div id="s2-n2" class="casilla h-20 border border-blue-400 flex items-center justify-center" onclick="gotIt2(this.id)">X</div>
-                        <div id="s2-n3" class="casilla h-20 border border-blue-400 flex items-center justify-center gotit2" onclick="gotIt2(this.id)"><img class="w-10" src="images/bonus.png"></div>
+                        <div id="s2-n3" class="casilla h-20 border border-blue-400 flex items-center justify-center gotit2" onclick="gotIt2(this.id)"><img class="w-10" src="images/bonus-2.png"></div>
                         <div id="s2-n4" class="casilla h-20 border border-blue-400 flex items-center justify-center" onclick="gotIt2(this.id)">X</div>
                         <div id="s2-n5" class="casilla h-20 border border-blue-400 flex items-center justify-center" onclick="gotIt2(this.id)">X</div>
                     </div>
@@ -158,24 +158,33 @@
         	<li class="mb-10 p-2 flex cursor-pointer flex items-center">
                 <img class="mr-2" src="images/tag.svg" alt="">
                 Cartillas
-                <img class="mx-2 cursor-pointer" src="images/one-fill.svg" alt="" onclick="play1card()">
-                <img class="cursor-pointer" src="images/two.svg" alt="" onclick="play2cards()">
+                <img id="p1cOption" class="mx-2 cursor-pointer" src="images/one-fill.svg" alt="" onclick="play1card(); closeMenu()">
+                <img id="p2cOption" class="cursor-pointer" src="images/two.svg" alt="" onclick="play2cards(); closeMenu()">
             </li>
             <li class="mb-10 p-2 flex cursor-pointer flex items-center" onclick="confirmClean()">
                 <img class="mr-2" src="images/clear.svg" alt="">
-                Limpiar cartilla actual
+                Limpiar cartillas
             </li>
             <li class="mb-10 p-2 flex cursor-pointer flex items-center" onclick="confirmNew()">
                 <img class="mr-2" src="images/new.svg" alt="">
-                Nueva cartilla aleatoria
+                Nuevas cartillas
             </li>
-            <li class="mb-10 p-2 flex cursor-pointer flex items-center" onclick="closeMenu()">
+            <!-- <li class="mb-10 p-2 flex cursor-pointer flex items-center" onclick="closeMenu()">
                 <img class="mr-2" src="images/back.svg" alt="">
                 Volver
-            </li>
+            </li> -->
         </ul>
-        <img class="w-20" src="images/bonus.png">
+        <img class="w-20" src="images/bonus-1.png">
     </div>
+
+    <!-- Indicador de slide -->
+    <!-- <div id="slideind-container" class="absolute bottom-5 right-0 border">
+    	hello
+    </div> -->
+    <div id="slideInd" class="absolute bottom-5 right-0">
+    	<img src="images/slide.png" alt="">
+    </div>
+
     <script src="js/confetti.js?v=1.2"></script>
     <script src="js/script.js?v=1.2"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

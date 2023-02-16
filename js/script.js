@@ -1,7 +1,16 @@
+/* LocalStorage */
+function lsOneCard() {
+    localStorage.setItem("cardsInGame", 1);
+}
+
+function lsTwoCards() {
+    localStorage.setItem("cardsInGame", 2);
+}
+
 /* Menú */
 function openMenu() {
     document.getElementById('menu-options').classList.remove("hidden");
-    
+
     // esconder temporalmente la pantalla #2
     document.querySelector('#screen2').classList.add('hidden');
     document.querySelector('#container').style.width = "100%";
@@ -10,6 +19,7 @@ function openMenu() {
 
 function closeMenu() {
     document.getElementById('menu-options').classList.add("hidden");
+    checkCardsInGame();
 }
 
 function newCard() {
@@ -262,7 +272,7 @@ function confirmClean() {
 function confirmNew() {
     Swal.fire({
         title: '¿Estás segura?',
-        text: "Se generará una nueva cartilla",
+        text: "Se generarán nuevas cartillas",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -314,52 +324,73 @@ function checkBingoStatus2() {
 
 /* Jugar 1 o 2 cartillas */
 function play1card() {
+    lsOneCard();
     document.querySelector('#screen2').classList.add('hidden');
     document.querySelector('#container').style.width = "100%";
     document.querySelector('#screen1').style.width = "100%";
-    closeMenu();
+
+    document.querySelector('#p1cOption').src = "images/one-fill.svg";
+    document.querySelector('#p2cOption').src = "images/two.svg";
 }
+
 function play2cards() {
+    lsTwoCards();
     document.querySelector('#screen2').classList.remove('hidden');
     document.querySelector('#container').style.width = "200%";
     document.querySelector('#screen1').style.width = "50%";
-    closeMenu();
+
+    document.querySelector('#p1cOption').src = "images/one.svg";
+    document.querySelector('#p2cOption').src = "images/two-fill.svg";
+
+    startSlideAnimation();
 }
 
-/* Pantalla slide */
-/*const container = document.querySelector("#container");
-const screen1 = document.querySelector("#screen1");
-const screen2 = document.querySelector("#screen2");
-
-let startX = null;
-
-container.addEventListener("touchstart", (event) => {
-    startX = event.touches[0].clientX;
-});
-
-container.addEventListener("touchmove", (event) => {
-    if (startX === null) {
-        return;
+function checkCardsInGame() {
+    if (localStorage.getItem("cardsInGame") === null || localStorage.getItem("cardsInGame") == 1) {
+        play1card();
+    } else {
+        play2cards();
     }
+}
 
-    const currentX = event.touches[0].clientX;
-    const diffX = startX - currentX;
+/* Crear indicador de deslizador */
+function createSlideAnim() {
+    // Create a new div element
+    const divElement = document.createElement('div');
 
-    if (diffX > 0) {
-        // Swiped left, move to screen 2
-        container.style.transform = "translateX(-50%)";
-    } else if (diffX < 0) {
-        // Swiped right, move to screen 1
-        container.style.transform = "translateX(0%)";
-    }
+    // Add an id attribute to the div element
+    divElement.setAttribute('id', 'slideInd');
 
-    startX = null;
+    // Create a new img element
+    const imgElement = document.createElement('img');
+
+    // Set the source attribute of the img element
+    imgElement.src = 'images/slide.png';
+
+    // Append the img element to the div element
+    divElement.appendChild(imgElement);
+
+    // Append the div element to the document body
+    document.querySelector('#slideind-container').appendChild(divElement);
+
+    var slideInd = document.getElementById("slideInd");
+    slideInd.addEventListener("animationend", function() {
+        slideInd.style.display = "none";
+    });
+}
+
+/* Indicador de deslizador (al terminar animación) */
+var slideInd = document.getElementById("slideInd");
+slideInd.addEventListener("animationend", function() {
+    slideInd.style.display = "none";
 });
 
-screen1.addEventListener("touchstart", (event) => {
-    event.stopPropagation();
-});
+function startSlideAnimation(){
+    var slideInd = document.getElementById("slideInd");
+    slideInd.style.display = "block";
+}
 
-screen2.addEventListener("touchstart", (event) => {
-    event.stopPropagation();
-});*/
+/* Después de cargar la página */
+window.onload = function() {
+    checkCardsInGame();
+};
