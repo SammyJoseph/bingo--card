@@ -47,7 +47,7 @@ function cleanCard() {
     try {
         document.querySelector('#bingoConfetti').classList.add('hidden');
     } catch (e) {
-        console.log(e);
+        // console.log(e);
     }
 
     closeMenu();
@@ -293,14 +293,16 @@ function checkBingoStatus1() {
         try {
             document.querySelector('#bingoConfetti').classList.remove('hidden');
         } catch (e) {
-            console.log(e);
+            // console.log(e);
             bingo();
         }
     } else {
-        try {
-            document.querySelector('#bingoConfetti').classList.add('hidden');
-        } catch (e) {
-            console.log(e);
+        if (document.querySelectorAll('.gotit2').length < 25) {
+            try {
+                document.querySelector('#bingoConfetti').classList.add('hidden');
+            } catch (e) {
+                // console.log(e);
+            }
         }
     }
 }
@@ -310,14 +312,16 @@ function checkBingoStatus2() {
         try {
             document.querySelector('#bingoConfetti').classList.remove('hidden');
         } catch (e) {
-            console.log(e);
+            // console.log(e);
             bingo();
         }
     } else {
-        try {
-            document.querySelector('#bingoConfetti').classList.add('hidden');
-        } catch (e) {
-            console.log(e);
+        if (document.querySelectorAll('.gotit1').length < 25) {
+            try {
+                document.querySelector('#bingoConfetti').classList.add('hidden');
+            } catch (e) {
+                // console.log(e);
+            }
         }
     }
 }
@@ -383,7 +387,7 @@ slideInd.addEventListener("animationend", function() {
     slideInd.style.display = "none";
 });
 
-function startSlideAnimation(){
+function startSlideAnimation() {
     var slideInd = document.getElementById("slideInd");
     slideInd.style.display = "block";
 }
