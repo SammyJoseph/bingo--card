@@ -341,8 +341,6 @@ function play2cards() {
 
     document.querySelector('#p1cOption').src = "images/one.svg";
     document.querySelector('#p2cOption').src = "images/two-fill.svg";
-
-    startSlideAnimation();
 }
 
 function checkCardsInGame() {
