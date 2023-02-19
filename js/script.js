@@ -1,3 +1,20 @@
+/* Global variables */
+// Cartilla #1
+let card1Array = [];
+let arrayB1 = [];
+let arrayI1 = [];
+let arrayN1 = [];
+let arrayG1 = [];
+let arrayO1 = [];
+
+// Cartilla #2
+let card2Array = [];
+let arrayB2 = [];
+let arrayI2 = [];
+let arrayN2 = [];
+let arrayG2 = [];
+let arrayO2 = [];
+
 /* LocalStorage */
 function lsOneCard() {
     localStorage.setItem("cardsInGame", 1);
@@ -24,7 +41,7 @@ function closeMenu() {
 
 function newCard() {
     // window.location.reload();
-    createCard();
+    createCards();
     cleanCard();
     closeMenu();
 }
@@ -91,7 +108,7 @@ function gotIt2(casilla) {
 }
 
 /* Generación de cartilla aleatoria */
-function createCard() {
+function createCards() {
     // Columna B
     let randomB1 = [];
 
@@ -102,7 +119,7 @@ function createCard() {
             randomB1.push(randomNumber);
         }
     }
-    // console.log(randomB1);
+    arrayB1 = randomB1;
     for (var i = 1; i <= randomB1.length; i++) {
         document.getElementById('s1-b' + i).innerHTML = randomB1[i - 1];
     }
@@ -116,7 +133,7 @@ function createCard() {
             randomB2.push(randomNumber);
         }
     }
-    // console.log(randomB2);
+    arrayB2 = randomB2;
     for (var i = 1; i <= randomB2.length; i++) {
         document.getElementById('s2-b' + i).innerHTML = randomB2[i - 1];
     }
@@ -131,7 +148,7 @@ function createCard() {
             randomI1.push(randomNumber);
         }
     }
-    // console.log(randomI1);
+    arrayI1 = randomI1;
     for (var i = 1; i <= randomI1.length; i++) {
         document.getElementById('s1-i' + i).innerHTML = randomI1[i - 1];
     }
@@ -145,7 +162,7 @@ function createCard() {
             randomI2.push(randomNumber);
         }
     }
-    // console.log(randomI2);
+    arrayI2 = randomI2;
     for (var i = 1; i <= randomI2.length; i++) {
         document.getElementById('s2-i' + i).innerHTML = randomI2[i - 1];
     }
@@ -160,7 +177,7 @@ function createCard() {
             randomN1.push(randomNumber);
         }
     }
-    // console.log(randomN1);
+    arrayN1 = randomN1;
     for (var i = 1; i <= randomN1.length; i++) {
         if (i != 3) { // cuadro central bonus
             document.getElementById('s1-n' + i).innerHTML = randomN1[i - 1];
@@ -176,7 +193,7 @@ function createCard() {
             randomN2.push(randomNumber);
         }
     }
-    // console.log(randomN2);
+    arrayN2 = randomN2;
     for (var i = 1; i <= randomN2.length; i++) {
         if (i != 3) { // cuadro central bonus
             document.getElementById('s2-n' + i).innerHTML = randomN2[i - 1];
@@ -193,7 +210,7 @@ function createCard() {
             randomG1.push(randomNumber);
         }
     }
-    // console.log(randomG1);
+    arrayG1 = randomG1;
     for (var i = 1; i <= randomG1.length; i++) {
         document.getElementById('s1-g' + i).innerHTML = randomG1[i - 1];
     }
@@ -207,7 +224,7 @@ function createCard() {
             randomG2.push(randomNumber);
         }
     }
-    // console.log(randomG2);
+    arrayG2 = randomG2;
     for (var i = 1; i <= randomG2.length; i++) {
         document.getElementById('s2-g' + i).innerHTML = randomG2[i - 1];
     }
@@ -222,7 +239,7 @@ function createCard() {
             randomO1.push(randomNumber);
         }
     }
-    // console.log(randomO1);
+    arrayO1 = randomO1;
     for (var i = 1; i <= randomO1.length; i++) {
         document.getElementById('s1-o' + i).innerHTML = randomO1[i - 1];
     }
@@ -236,12 +253,16 @@ function createCard() {
             randomO2.push(randomNumber);
         }
     }
-    // console.log(randomO2);
+    arrayO2 = randomO2;
     for (var i = 1; i <= randomO2.length; i++) {
         document.getElementById('s2-o' + i).innerHTML = randomO2[i - 1];
     }
+
+    // Guardar cartillas en arreglos globales
+    card1Array.push(arrayB1, arrayI1, arrayN1, arrayG1, arrayO1);
+    card2Array.push(arrayB2, arrayI2, arrayN2, arrayG2, arrayO2);
 }
-createCard();
+// createCards();
 
 
 /* Alerta al refrescar */
@@ -355,6 +376,10 @@ function checkCardsInGame() {
     }
 }
 
+function loadStorageCards() {
+
+}
+
 /* Crear indicador de deslizador */
 function createSlideAnim() {
     // Create a new div element
@@ -381,7 +406,7 @@ function createSlideAnim() {
     });
 }
 
-/* Indicador de deslizador (al terminar animación) */
+/* Indicador dedo deslizador (al terminar animación) */
 var slideInd = document.getElementById("slideInd");
 slideInd.addEventListener("animationend", function() {
     slideInd.style.display = "none";
@@ -394,5 +419,6 @@ function startSlideAnimation() {
 
 /* Después de cargar la página */
 window.onload = function() {
+    createCards();
     checkCardsInGame();
 };
