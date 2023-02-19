@@ -264,12 +264,166 @@ function createCards() {
 }
 // createCards();
 
+/* Cargar cartillas de localStorage */
+function loadStorageCards() {
+    // Columna B
+    let randomB1 = [];
+
+    while (randomB1.length < 5) {
+        let randomNumber = Math.floor(Math.random() * 15) + 1;
+
+        if (!randomB1.includes(randomNumber)) {
+            randomB1.push(randomNumber);
+        }
+    }
+    arrayB1 = randomB1;
+    for (var i = 1; i <= randomB1.length; i++) {
+        document.getElementById('s1-b' + i).innerHTML = randomB1[i - 1];
+    }
+
+    let randomB2 = [];
+
+    while (randomB2.length < 5) {
+        let randomNumber = Math.floor(Math.random() * 15) + 1;
+
+        if (!randomB2.includes(randomNumber)) {
+            randomB2.push(randomNumber);
+        }
+    }
+    arrayB2 = randomB2;
+    for (var i = 1; i <= randomB2.length; i++) {
+        document.getElementById('s2-b' + i).innerHTML = randomB2[i - 1];
+    }
+
+    // Columna I
+    let randomI1 = [];
+
+    while (randomI1.length < 5) {
+        let randomNumber = Math.floor(Math.random() * 15) + 16;
+
+        if (!randomI1.includes(randomNumber)) {
+            randomI1.push(randomNumber);
+        }
+    }
+    arrayI1 = randomI1;
+    for (var i = 1; i <= randomI1.length; i++) {
+        document.getElementById('s1-i' + i).innerHTML = randomI1[i - 1];
+    }
+
+    let randomI2 = [];
+
+    while (randomI2.length < 5) {
+        let randomNumber = Math.floor(Math.random() * 15) + 16;
+
+        if (!randomI2.includes(randomNumber)) {
+            randomI2.push(randomNumber);
+        }
+    }
+    arrayI2 = randomI2;
+    for (var i = 1; i <= randomI2.length; i++) {
+        document.getElementById('s2-i' + i).innerHTML = randomI2[i - 1];
+    }
+
+    // Columna N
+    let randomN1 = [];
+
+    while (randomN1.length < 5) {
+        let randomNumber = Math.floor(Math.random() * 15) + 31;
+
+        if (!randomN1.includes(randomNumber)) {
+            randomN1.push(randomNumber);
+        }
+    }
+    arrayN1 = randomN1;
+    for (var i = 1; i <= randomN1.length; i++) {
+        if (i != 3) { // cuadro central bonus
+            document.getElementById('s1-n' + i).innerHTML = randomN1[i - 1];
+        }
+    }
+
+    let randomN2 = [];
+
+    while (randomN2.length < 5) {
+        let randomNumber = Math.floor(Math.random() * 15) + 31;
+
+        if (!randomN2.includes(randomNumber)) {
+            randomN2.push(randomNumber);
+        }
+    }
+    arrayN2 = randomN2;
+    for (var i = 1; i <= randomN2.length; i++) {
+        if (i != 3) { // cuadro central bonus
+            document.getElementById('s2-n' + i).innerHTML = randomN2[i - 1];
+        }
+    }
+
+    // Columna G
+    let randomG1 = [];
+
+    while (randomG1.length < 5) {
+        let randomNumber = Math.floor(Math.random() * 15) + 46;
+
+        if (!randomG1.includes(randomNumber)) {
+            randomG1.push(randomNumber);
+        }
+    }
+    arrayG1 = randomG1;
+    for (var i = 1; i <= randomG1.length; i++) {
+        document.getElementById('s1-g' + i).innerHTML = randomG1[i - 1];
+    }
+
+    let randomG2 = [];
+
+    while (randomG2.length < 5) {
+        let randomNumber = Math.floor(Math.random() * 15) + 46;
+
+        if (!randomG2.includes(randomNumber)) {
+            randomG2.push(randomNumber);
+        }
+    }
+    arrayG2 = randomG2;
+    for (var i = 1; i <= randomG2.length; i++) {
+        document.getElementById('s2-g' + i).innerHTML = randomG2[i - 1];
+    }
+
+    // Columna O
+    let randomO1 = [];
+
+    while (randomO1.length < 5) {
+        let randomNumber = Math.floor(Math.random() * 15) + 61;
+
+        if (!randomO1.includes(randomNumber)) {
+            randomO1.push(randomNumber);
+        }
+    }
+    arrayO1 = randomO1;
+    for (var i = 1; i <= randomO1.length; i++) {
+        document.getElementById('s1-o' + i).innerHTML = randomO1[i - 1];
+    }
+
+    let randomO2 = [];
+
+    while (randomO2.length < 5) {
+        let randomNumber = Math.floor(Math.random() * 15) + 61;
+
+        if (!randomO2.includes(randomNumber)) {
+            randomO2.push(randomNumber);
+        }
+    }
+    arrayO2 = randomO2;
+    for (var i = 1; i <= randomO2.length; i++) {
+        document.getElementById('s2-o' + i).innerHTML = randomO2[i - 1];
+    }
+
+    // Guardar cartillas en arreglos globales
+    card1Array.push(arrayB1, arrayI1, arrayN1, arrayG1, arrayO1);
+    card2Array.push(arrayB2, arrayI2, arrayN2, arrayG2, arrayO2);
+}
 
 /* Alerta al refrescar */
 window.onbeforeunload = function(event) {
     return confirm("Confirm refresh");
 };
-
 
 /* Sweet alert */
 function confirmClean() {
@@ -374,10 +528,6 @@ function checkCardsInGame() {
     } else {
         play2cards();
     }
-}
-
-function loadStorageCards() {
-
 }
 
 /* Crear indicador de deslizador */
