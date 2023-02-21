@@ -7,6 +7,15 @@ let arrayN1 = [];
 let arrayG1 = [];
 let arrayO1 = [];
 
+// Cartilla #1 - Marcadas
+const card1Marray = [];
+for (let i = 0; i < 5; i++) {
+  card1Marray.push([]);
+  for (let j = 0; j < 5; j++) {
+    card1Marray[i].push(0);
+  }
+}
+
 // Cartilla #2
 let card2Array = [];
 let arrayB2 = [];
@@ -14,6 +23,15 @@ let arrayI2 = [];
 let arrayN2 = [];
 let arrayG2 = [];
 let arrayO2 = [];
+
+// Cartilla #2 - Marcadas
+const card2Marray = [];
+for (let i = 0; i < 5; i++) {
+  card2Marray.push([]);
+  for (let j = 0; j < 5; j++) {
+    card2Marray[i].push(0);
+  }
+}
 
 
 /* LocalStorage */
@@ -79,37 +97,55 @@ function cleanCards() {
 }
 
 /* Marcado de cuadros */
-function gotIt1(casilla) {
-    colorStatus = document.getElementById(casilla).classList.contains("bg-red-300");
+function gotIt1(casilla, row, col) {
+    let colorStatus = document.getElementById(casilla).classList.contains("bg-red-300");
+    let c1Marray = JSON.parse(localStorage.getItem('lsMcard1'));
 
-    if (colorStatus) {
+    if (c1Marray == null ) {
+        c1Marray = card1Marray;
+    }
+
+    if (colorStatus) { // si tiene fondo, quítalo
         if (casilla != 's1-n3') {
             document.getElementById(casilla).classList.remove("gotit1");
         }
         document.getElementById(casilla).classList.remove("bg-red-300");
-    } else {
+        c1Marray[row][col] = 0; // arreglo de casillas marcadas
+        localStorage.setItem('lsMcard1', JSON.stringify(c1Marray)); // guardar en localStorage
+    } else { // sino agrégale
         if (casilla != 's1-n3') {
-            document.getElementById(casilla).classList.add("gotit1");
+            document.getElementById(casilla).classList.add("gotit1");            
         }
         document.getElementById(casilla).classList.add("bg-red-300");
+        c1Marray[row][col] = 1; // arreglo de casillas marcadas
+        localStorage.setItem('lsMcard1', JSON.stringify(c1Marray)); // guardar en localStorage
     }
 
     checkBingoStatus1();
 }
 
-function gotIt2(casilla) {
-    colorStatus = document.getElementById(casilla).classList.contains("bg-blue-300");
+function gotIt2(casilla, row, col) {
+    let colorStatus = document.getElementById(casilla).classList.contains("bg-blue-300");
+    let c2Marray = JSON.parse(localStorage.getItem('lsMcard2'));
+
+    if (c2Marray == null ) {
+        c2Marray = card2Marray;
+    }
 
     if (colorStatus) {
         if (casilla != 's2-n3') {
             document.getElementById(casilla).classList.remove("gotit2");
         }
         document.getElementById(casilla).classList.remove("bg-blue-300");
+        card2Marray[row][col] = 0; // arreglo de casillas marcadas
+        localStorage.setItem('lsMcard2', JSON.stringify(card2Marray)); // guardar en localStorage
     } else {
         if (casilla != 's2-n3') {
             document.getElementById(casilla).classList.add("gotit2");
         }
         document.getElementById(casilla).classList.add("bg-blue-300");
+        card2Marray[row][col] = 1; // arreglo de casillas marcadas
+        localStorage.setItem('lsMcard2', JSON.stringify(card2Marray)); // guardar en localStorage
     }
 
     checkBingoStatus2();
@@ -508,9 +544,211 @@ function loadStorageCards() {
     card2Array.push(arrayB2, arrayI2, arrayN2, arrayG2, arrayO2);
 }
 
+/* Cargar casillas marcadas */
+function loadStorageChecked(){
+    let checked1 = JSON.parse(localStorage.getItem('lsMcard1'));
+    let checked2 = JSON.parse(localStorage.getItem('lsMcard2'));
+
+    if (checked1 != null) {
+        for (var i = 0; i < checked1.length; i++) {
+            // console.log('i -> ' + i);
+            for(var j = 0; j < checked1.length; j++){
+                // console.log('j -> ' + j);
+                if(checked1[i][j] == 1){
+                    /*console.log('i -> ' + i);
+                    console.log('j -> ' + j);
+                    console.log('------------');*/
+                    
+                    switch (i) {
+                        case 0:
+                            if (j == 0) {
+                                document.querySelector('#s1-b1').classList.add('bg-red-300');
+                            }else if (j == 1) {
+                                document.querySelector('#s1-i1').classList.add('bg-red-300');
+                            }
+                            else if (j == 2) {
+                                document.querySelector('#s1-n1').classList.add('bg-red-300');
+                            }
+                            else if (j == 3) {
+                                document.querySelector('#s1-g1').classList.add('bg-red-300');
+                            }
+                            else if (j == 4) {
+                                document.querySelector('#s1-o1').classList.add('bg-red-300');
+                            }
+                            break;
+                        case 1:
+                            if (j == 0) {
+                                document.querySelector('#s1-b2').classList.add('bg-red-300');
+                            }else if (j == 1) {
+                                document.querySelector('#s1-i2').classList.add('bg-red-300');
+                            }
+                            else if (j == 2) {
+                                document.querySelector('#s1-n2').classList.add('bg-red-300');
+                            }
+                            else if (j == 3) {
+                                document.querySelector('#s1-g2').classList.add('bg-red-300');
+                            }
+                            else if (j == 4) {
+                                document.querySelector('#s1-o2').classList.add('bg-red-300');
+                            }
+                            break;
+                        case 2:
+                            if (j == 0) {
+                                document.querySelector('#s1-b3').classList.add('bg-red-300');
+                            }else if (j == 1) {
+                                document.querySelector('#s1-i3').classList.add('bg-red-300');
+                            }else if (j == 2) {
+                                document.querySelector('#s1-n3').classList.add('bg-red-300');
+                            }else if (j == 3) {
+                                document.querySelector('#s1-g3').classList.add('bg-red-300');
+                            }
+                            else if (j == 4) {
+                                document.querySelector('#s1-o3').classList.add('bg-red-300');
+                            }
+                            break;
+                        case 3:
+                            if (j == 0) {
+                                document.querySelector('#s1-b4').classList.add('bg-red-300');
+                            }else if (j == 1) {
+                                document.querySelector('#s1-i4').classList.add('bg-red-300');
+                            }
+                            else if (j == 2) {
+                                document.querySelector('#s1-n4').classList.add('bg-red-300');
+                            }
+                            else if (j == 3) {
+                                document.querySelector('#s1-g4').classList.add('bg-red-300');
+                            }
+                            else if (j == 4) {
+                                document.querySelector('#s1-o4').classList.add('bg-red-300');
+                            }
+                            break;
+                        case 4:
+                            if (j == 0) {
+                                document.querySelector('#s1-b5').classList.add('bg-red-300');
+                            }else if (j == 1) {
+                                document.querySelector('#s1-i5').classList.add('bg-red-300');
+                            }
+                            else if (j == 2) {
+                                document.querySelector('#s1-n5').classList.add('bg-red-300');
+                            }
+                            else if (j == 3) {
+                                document.querySelector('#s1-g5').classList.add('bg-red-300');
+                            }
+                            else if (j == 4) {
+                                document.querySelector('#s1-o5').classList.add('bg-red-300');
+                            }
+                            break;
+                        default:
+                            // console.log('fila ' + i + ' vacía');
+                            break;
+                    }
+                }             
+            }
+        }
+    }
+
+    if (checked2 != null) {
+        for (var i = 0; i < checked2.length; i++) {
+            // console.log('i -> ' + i);
+            for(var j = 0; j < checked2.length; j++){
+                // console.log('j -> ' + j);
+                if(checked2[i][j] == 1){
+                    /*console.log('i -> ' + i);
+                    console.log('j -> ' + j);
+                    console.log('------------');*/
+                    
+                    switch (i) {
+                        case 0:
+                            if (j == 0) {
+                                document.querySelector('#s2-b1').classList.add('bg-blue-300');
+                            }else if (j == 1) {
+                                document.querySelector('#s2-i1').classList.add('bg-blue-300');
+                            }
+                            else if (j == 2) {
+                                document.querySelector('#s2-n1').classList.add('bg-blue-300');
+                            }
+                            else if (j == 3) {
+                                document.querySelector('#s2-g1').classList.add('bg-blue-300');
+                            }
+                            else if (j == 4) {
+                                document.querySelector('#s2-o1').classList.add('bg-blue-300');
+                            }
+                            break;
+                        case 1:
+                            if (j == 0) {
+                                document.querySelector('#s2-b2').classList.add('bg-blue-300');
+                            }else if (j == 1) {
+                                document.querySelector('#s2-i2').classList.add('bg-blue-300');
+                            }
+                            else if (j == 2) {
+                                document.querySelector('#s2-n2').classList.add('bg-blue-300');
+                            }
+                            else if (j == 3) {
+                                document.querySelector('#s2-g2').classList.add('bg-blue-300');
+                            }
+                            else if (j == 4) {
+                                document.querySelector('#s2-o2').classList.add('bg-blue-300');
+                            }
+                            break;
+                        case 2:
+                            if (j == 0) {
+                                document.querySelector('#s2-b3').classList.add('bg-blue-300');
+                            }else if (j == 1) {
+                                document.querySelector('#s2-i3').classList.add('bg-blue-300');
+                            }else if (j == 2) {
+                                document.querySelector('#s2-n3').classList.add('bg-blue-300');
+                            }else if (j == 3) {
+                                document.querySelector('#s2-g3').classList.add('bg-blue-300');
+                            }
+                            else if (j == 4) {
+                                document.querySelector('#s2-o3').classList.add('bg-blue-300');
+                            }
+                            break;
+                        case 3:
+                            if (j == 0) {
+                                document.querySelector('#s2-b4').classList.add('bg-blue-300');
+                            }else if (j == 1) {
+                                document.querySelector('#s2-i4').classList.add('bg-blue-300');
+                            }
+                            else if (j == 2) {
+                                document.querySelector('#s2-n4').classList.add('bg-blue-300');
+                            }
+                            else if (j == 3) {
+                                document.querySelector('#s2-g4').classList.add('bg-blue-300');
+                            }
+                            else if (j == 4) {
+                                document.querySelector('#s2-o4').classList.add('bg-blue-300');
+                            }
+                            break;
+                        case 4:
+                            if (j == 0) {
+                                document.querySelector('#s2-b5').classList.add('bg-blue-300');
+                            }else if (j == 1) {
+                                document.querySelector('#s2-i5').classList.add('bg-blue-300');
+                            }
+                            else if (j == 2) {
+                                document.querySelector('#s2-n5').classList.add('bg-blue-300');
+                            }
+                            else if (j == 3) {
+                                document.querySelector('#s2-g5').classList.add('bg-blue-300');
+                            }
+                            else if (j == 4) {
+                                document.querySelector('#s2-o5').classList.add('bg-blue-300');
+                            }
+                            break;
+                        default:
+                            // console.log('fila ' + i + ' vacía');
+                            break;
+                    }
+                }             
+            }
+        }
+    }
+}
+
 /* Alerta al refrescar */
 window.onbeforeunload = function(event) {
-    return confirm("Confirm refresh");
+    // return confirm("Confirm refresh");
 };
 
 /* Sweet alert */
@@ -614,6 +852,7 @@ function checkNumberOfCardsInGame() {
     if (localStorage.getItem("cardsInGame") === null || localStorage.getItem("cardsInGame") == 1) {
         play1card();
     } else {
+        startSlideAnimation();
         play2cards();
     }
 }
@@ -656,7 +895,10 @@ function startSlideAnimation() {
 }
 
 /* Después de cargar la página */
-window.onload = function() {
+/*window.onload = function() {
     createCards();
     checkNumberOfCardsInGame();
-};
+};*/
+createCards();
+loadStorageChecked();
+checkNumberOfCardsInGame();
