@@ -82,10 +82,12 @@ function cleanCards() {
 
     boxes.forEach(box => {
         box.classList.remove("bg-blue-300", "gotit2");
-    });
+    });    
 
     document.getElementById('s1-n3').classList.add("gotit1");
     document.getElementById('s2-n3').classList.add("gotit2");
+
+    cleanLSCheckedBoxes(); // limpiar marcado de casillas guardado en localStorage
 
     try {
         document.querySelector('#bingoConfetti').classList.add('hidden');
@@ -94,6 +96,25 @@ function cleanCards() {
     }
 
     closeMenu();
+}
+
+function cleanLSCheckedBoxes(){
+    let c1Marray = JSON.parse(localStorage.getItem('lsMcard1'));
+    let c2Marray = JSON.parse(localStorage.getItem('lsMcard2'));
+
+    for (var i = 0; i < c1Marray.length; i++) {
+        for (var j = 0; j < c1Marray.length; j++) {
+            c1Marray[i][j] = 0;
+        }
+    }
+    localStorage.setItem('lsMcard1', JSON.stringify(c1Marray));
+
+    for (var i = 0; i < c2Marray.length; i++) {
+        for (var j = 0; j < c2Marray.length; j++) {
+            c2Marray[i][j] = 0;
+        }
+    }
+    localStorage.setItem('lsMcard2', JSON.stringify(c2Marray));
 }
 
 /* Marcado de cuadros */
@@ -137,15 +158,15 @@ function gotIt2(casilla, row, col) {
             document.getElementById(casilla).classList.remove("gotit2");
         }
         document.getElementById(casilla).classList.remove("bg-blue-300");
-        card2Marray[row][col] = 0; // arreglo de casillas marcadas
-        localStorage.setItem('lsMcard2', JSON.stringify(card2Marray)); // guardar en localStorage
+        c2Marray[row][col] = 0; // arreglo de casillas marcadas
+        localStorage.setItem('lsMcard2', JSON.stringify(c2Marray)); // guardar en localStorage
     } else {
         if (casilla != 's2-n3') {
             document.getElementById(casilla).classList.add("gotit2");
         }
         document.getElementById(casilla).classList.add("bg-blue-300");
-        card2Marray[row][col] = 1; // arreglo de casillas marcadas
-        localStorage.setItem('lsMcard2', JSON.stringify(card2Marray)); // guardar en localStorage
+        c2Marray[row][col] = 1; // arreglo de casillas marcadas
+        localStorage.setItem('lsMcard2', JSON.stringify(c2Marray)); // guardar en localStorage
     }
 
     checkBingoStatus2();
